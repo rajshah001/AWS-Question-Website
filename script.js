@@ -1,3 +1,20 @@
+var myTimer;
+function clock() {
+    myTimer = setInterval(myClock, 1000);
+    var c = 100;
+
+    function myClock() {
+		--c;
+		document.getElementById("timer").innerHTML = "Seconds Remaining : ".toString() + c.toString();
+        if (c == 0) {
+        clearInterval(myTimer);
+        alert("Reached zero");
+       }
+    }
+}
+
+clock();
+
 (function() {
     const all_questions = [{
             question: `A company is storing an access key (access key ID and secret access key) in a text file on a custom AMI. The company uses the access key to access DynamoDB tables from instances created from the AMI. The security team has mandated a more secure solution. Which solution will meet the security team’s mandate?`,
@@ -128,14 +145,12 @@ Which VPC design meets these requirements?`,
 
         all_questions.forEach((currentQuestion, questionNumber) => {
             const answers = [];
-            console.log(questionNumber);
             for (letter in currentQuestion.answers) {
                 answers.push(
-                    `<label>
-             <input type="radio" name="question${questionNumber}" value="${letter}">
+                    `
+             <input class="quiz_ipt" type="radio" name="question${questionNumber+1}" value="${letter}">
               ${letter} :
-              ${currentQuestion.answers[letter]}
-           </label>`
+              ${currentQuestion.answers[letter]}<br>`
                 );
             }
 
@@ -158,14 +173,14 @@ Which VPC design meets these requirements?`,
 
         all_questions.forEach((currentQuestion, questionNumber) => {
             const answerContainer = answerContainers[questionNumber];
-            const selector = `input[name=question${questionNumber}]:checked`;
+			
+            const selector = `input[name=question${questionNumber+1}]:checked`;
             const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-
+			
             if (userAnswer === currentQuestion.correctAnswer) {
-
                 numCorrect++;
-
-                answerContainers[questionNumber].style.color = "lightgreen";
+                answerContainer.style.color = "lightgreen";
+				
             } else {
                 answerContainers[questionNumber].style.color = "red";
             }
@@ -187,10 +202,8 @@ Which VPC design meets these requirements?`,
 
         if (currentSlide === slides.length - 1) {
             nextButton.style.display = "none";
-            submitButton.style.display = "inline-block";
         } else {
             nextButton.style.display = "inline-block";
-            submitButton.style.display = "none";
         }
     }
 

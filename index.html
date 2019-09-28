@@ -7,13 +7,19 @@
    </head>
    <body>
       <h1>Quiz on AWS</h1>
+	  
+	  <div class="timer" id="timer">Seconds Remaining : 100</div>
+	  
       <div class="quiz-container">
          <div id="quiz"></div>
+		 <div id="correctans"></div>
       </div>
+	  
+	  <br>
 	  
       <button id="previous">Previous Question</button>
       <button id="next">Next Question</button>
-      <button id="submit">Submit Quiz</button>
+      <button id="submit" onclick="clearInterval(myTimer)">Submit Quiz</button>
 	  
       <div id="results"></div>
 	  
