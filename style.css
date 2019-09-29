@@ -18,6 +18,9 @@ h1{
   font-size: 100%;
   margin-bottom: 50px;
 }
+@-ms-viewport{
+  width: device-width;
+}
 .quiz_ipt{
 	text-align: center;
 	margin: 10px;
